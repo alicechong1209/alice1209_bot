@@ -1,3 +1,5 @@
+import re
+
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext 
 import configparser 
@@ -23,6 +25,7 @@ def main():
 
  dispatcher.add_handler(CommandHandler("add", add))
  dispatcher.add_handler(CommandHandler("help", help_command))
+ dispatcher.add_handler(CommandHandler("hello", hello_command))
 
  updater.start_polling() 
  updater.idle() 
@@ -48,6 +51,11 @@ def add(update: Update, context: CallbackContext) -> None:
 redis1.get(msg).decode('UTF-8') + ' times.')
  except (IndexError, ValueError):
   update.message.reply_text('Usage: /add <keyword>')
+
+def hello_command(update: Update, context: CallbackContext) -> None:
+ """Send a message when the command /hello is issued."""
+ update.message.reply_text('Good day, ' + update.message.text[7:] + "!")
+
 
 if __name__ == '__main__': 
  main()
