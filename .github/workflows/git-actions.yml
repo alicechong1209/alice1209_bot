@@ -1,17 +1,17 @@
-  name: my-actions 
-  on: [push]
+ name: my-actions 
+ on: [push]
 
-  jobs: # gather all the jobs that run in the
-workflow
+ jobs: 
+  
      my-helloworld-job:
-      runs-on: ubuntu-latest # Set the type of machine to run on
-      steps:
-        - uses: actions/checkout@v2 
+       runs-on: ubuntu-latest # Set the type of machine to run on
+       steps:
+         - uses: actions/checkout@v2 
 
-        - name: Say Hello World 
-          run: echo 'Hello World'
+         - name: Say Hello World 
+           run: echo 'Hello World'
 
-        - name: View a file 
-          run: |
+         - name: View a file 
+           run: |
              echo 'Viewing the file: '
              cat requirements.txt
